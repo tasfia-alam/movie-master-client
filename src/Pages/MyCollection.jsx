@@ -34,7 +34,6 @@ const MyCollection = () => {
       });
   }, [user]);
 
-  // SweetAlert2 Delete Handler
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
