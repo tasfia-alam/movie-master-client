@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ThemeContext, ThemeProvider } from "../context/ThemeContext";
 
 const AddMovie = () => {
   const { user } = useContext(AuthContext);
@@ -46,10 +47,15 @@ const AddMovie = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
+        <div  className={
+        ThemeContext === "dark"
+          ? "bg-gray-900 text-gray-100"
+          : "bg-gray-100 text-gray-900"
+      }>
+    <div className="max-w-md mx-auto pt-10 pb-10">
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
       <h2 className="text-4xl font-extrabold text-center mb-8">
-        <span className="text-orange-600">Add</span> a <span className="text-orange-600">New</span> Movie
+        <span className="text-orange-600"> Add a New Movie</span>
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <input
@@ -93,11 +99,12 @@ const AddMovie = () => {
         />
         <button
           type="submit"
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-green-600"
         >
           Add Movie
         </button>
       </form>
+    </div>
     </div>
   );
 };

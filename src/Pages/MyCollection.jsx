@@ -83,10 +83,16 @@ const MyCollection = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto mt-10">
+    <div   className={
+        theme === "dark"
+          ? "bg-gray-900 text-gray-100"
+          : "bg-gray-100 text-gray-900"
+      }>
+
+    <div className="max-w-5xl mx-auto pb-10">
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
       <h2
-        className={`text-4xl text-center mt-2 font-extrabold mb-8 ${
+        className={`text-4xl text-center pt-5 font-extrabold mb-8 ${
           theme === "dark" ? "text-gray-100" : "text-gray-900"
         }`}
       >
@@ -142,6 +148,7 @@ const MyCollection = () => {
           ))}
         </div>
       )}
+    </div>
     </div>
   );
 };

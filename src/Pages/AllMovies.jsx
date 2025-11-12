@@ -82,7 +82,7 @@ const AllMovies = () => {
           : "bg-gray-100 text-gray-900"
       }
     >
-    <div className="max-w-6xl mx-auto mt-10 p-4 transition-colors  duration-500">
+    <div className="max-w-6xl mx-auto p-4 transition-colors  duration-500">
       
       <h2 className="text-4xl text-center font-extrabold mb-8">
         All <span className="text-orange-600">Movies</span>
@@ -96,7 +96,7 @@ const AllMovies = () => {
             onClick={() => setSelectedGenre(genre)}
             className={`px-4 py-2 rounded-full hover:scale-105 transition-transform ${
               selectedGenre === genre
-                ? "bg-blue-600 text-white"
+                ? "bg-orange-600 text-white"
                 : theme === "dark"
                 ? "bg-gray-700 text-white hover:bg-gray-600"
                 : "bg-gray-800 text-white hover:bg-gray-900"
