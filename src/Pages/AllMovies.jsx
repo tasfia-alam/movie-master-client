@@ -75,7 +75,15 @@ const AllMovies = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto mt-10 p-4 transition-colors duration-500">
+    <div
+          className={
+        theme === "dark"
+          ? "bg-gray-900 text-gray-100"
+          : "bg-gray-100 text-gray-900"
+      }
+    >
+    <div className="max-w-6xl mx-auto mt-10 p-4 transition-colors  duration-500">
+      
       <h2 className="text-4xl text-center font-extrabold mb-8">
         All <span className="text-orange-600">Movies</span>
       </h2>
@@ -199,6 +207,7 @@ const AllMovies = () => {
           })}
         </div>
       )}
+    </div>
     </div>
   );
 };
