@@ -1,16 +1,72 @@
-# React + Vite
+# 🎬 MovieMaster Pro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)  
+[![React](https://img.shields.io/badge/React-18-blue?logo=react)](https://reactjs.org/)  
+[![Firebase](https://img.shields.io/badge/Firebase-Hosting-orange?logo=firebase)](https://firebase.google.com/)  
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-blue?logo=tailwind-css)](https://tailwindcss.com/)  
+[![GitHub stars](https://img.shields.io/github/stars/<your-username>/MovieMaster-Pro?style=social)](https://github.com/<your-username>/MovieMaster-Pro/stargazers)  
+[![Visitors](https://visitor-badge.glitch.me/badge?page_id=<your-username>.MovieMaster-Pro)](https://github.com/<your-username>/MovieMaster-Pro)  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌟 Project Overview
 
-## React Compiler
+MovieMaster Pro হল একটি **responsive, full-featured movie web app** যেখানে ব্যবহারকারীরা:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- মুভি সার্চ করতে পারে  
+- নিজের **My Collection** তৈরি করতে পারে  
+- প্রিয় মুভি **Watchlist** এ যোগ করতে পারে  
+- লগইন ও রেজিস্ট্রেশন করতে পারে  
+- Dark/Light theme toggle করতে পারে  
 
-## Expanding the ESLint configuration
+এটি React, TailwindCSS এবং Firebase এর উপর ভিত্তি করে তৈরি।
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠 Tech Stack
+
+- **Frontend:** React 18, TailwindCSS  
+- **Authentication & Hosting:** Firebase Auth & Firebase Hosting  
+- **Icons:** React Icons  
+- **State Management:** React Context API (Theme, User)  
+
+---
+
+## 🎯 Features
+
+- 🏠 **Home Page**: Latest movies & featured section  
+- 📂 **All Movies Page**: সব মুভির তালিকা  
+- 📚 **My Collection**: লগইন ব্যবহারকারীরা মুভি add/update/delete করতে পারবে  
+- ⭐ **Watchlist**: প্রিয় মুভিগুলি ওয়াচলিস্টে যোগ  
+- 🌙 **Dark/Light Mode**: থিম toggle  
+- 🔐 **Authentication**: Firebase Login/Register  
+- 📱 **Responsive Design**: Mobile, tablet, desktop friendly  
+
+---
+
+
+**Home Page**  
+![Home Page](screenshots/home.png)  
+
+**All Movies Page**  
+![All Movies](screenshots/allmovies.png)  
+
+**My Collection Page**  
+![My Collection](screenshots/mycollection.png)  
+
+**Dark/Light Mode**  
+![Dark/Light Mode](screenshots/darkmode.png)  
+
+> Screenshots folder `screenshots/`-এ রাখো।  
+
+---
+
+## 🚀 Installation & Setup
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/tasfiaalam/MovieMaster-Pro.git
+cd MovieMaster-Pro
+
+
+Live Link : https://movie-master-6d7b7.web.app
