@@ -52,11 +52,11 @@ const Home = () => {
 
       {/* Statistics Section */}
       <section
-        className={`statistics py-12 ${
-          theme === "dark" ? "bg-gray-800" : "bg-gray-100"
+        className={`statistics py-12 mt-10 ${
+          theme === "dark" ? "bg-orange-500" : "bg-white"
         }`}
       >
-        <h2 className="text-4xl font-extrabold text-center mb-6">Statistics</h2>
+        <h2 className="text-4xl font-extrabold text-center mb-6 text-orange-600">Statistics</h2>
         <div className="flex justify-center gap-10 flex-wrap">
           <div className="bg-black text-white shadow-lg p-6 rounded-lg w-44 text-center hover:scale-105 transition-transform">
             Total Movies: {movies.length}

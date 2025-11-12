@@ -97,8 +97,8 @@ const Navbar = () => {
                 theme === "dark" ? "text-white" : "text-gray-800"
               }`}
             >
-              <span className="text-orange-600">📽️ Movie</span>
-              Master<span className="text-orange-600">Pro</span>
+              <span >📽️ MovieMaster</span>
+              <span className="text-orange-500">Pro</span>
             </h1>
           </Link>
         </div>
@@ -110,7 +110,7 @@ const Navbar = () => {
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? "text-red-600 font-medium"
+                  ? "text-orange-600 font-medium"
                   : theme === "dark"
                   ? "text-gray-200 hover:text-red-400"
                   : "text-gray-700 hover:text-red-500"
@@ -288,7 +288,7 @@ const Navbar = () => {
               <>
                 <Link
                   to="/login"
-                  className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-500 text-sm"
+                  className="px-4 py-2 bg-orange-600 text-white rounded hover:bg-red-500 text-sm"
                 >
                   Login
                 </Link>
@@ -338,7 +338,7 @@ const Navbar = () => {
               />
               <button
                 type="submit"
-                className="px-3 py-2 bg-red-600 text-white rounded"
+                className="px-3 py-2 bg-orange-600 text-white rounded"
               >
                 <FaSearch />
               </button>
