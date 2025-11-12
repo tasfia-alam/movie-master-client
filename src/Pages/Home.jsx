@@ -9,7 +9,7 @@ const Home = () => {
 
   // Backend থেকে MongoDB data fetch
   useEffect(() => {
-    fetch("http://localhost:3000/movies")
+    fetch("https://movie-master-server-ashy.vercel.app/movies")
       .then((res) => res.json())
       .then((data) => setMovies(data))
       .catch((err) => console.error(err));

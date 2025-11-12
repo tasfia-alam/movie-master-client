@@ -18,7 +18,7 @@ const MovieDetails = () => {
   // Fetch movie details
   useEffect(() => {
     setLoadingMovie(true);
-    fetch(`http://localhost:3000/movies/${id}`)
+    fetch(`https://movie-master-server-ashy.vercel.app/movies${id}`)
       .then((res) => res.json())
       .then((data) => setMovie(data))
       .catch(() => toast.error("Failed to fetch movie details!"))

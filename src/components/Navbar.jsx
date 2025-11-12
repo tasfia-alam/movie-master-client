@@ -97,8 +97,8 @@ const Navbar = () => {
                 theme === "dark" ? "text-white" : "text-gray-800"
               }`}
             >
-              <span className="text-orange-600">🎬 Movie</span>
-              Master <span className="text-orange-600">Pro</span>
+              <span className="text-orange-600">📽️ Movie</span>
+              Master<span className="text-orange-600">Pro</span>
             </h1>
           </Link>
         </div>

@@ -19,7 +19,7 @@ const AllMovies = () => {
   // Fetch all movies
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3000/movies")
+    fetch("https://movie-master-server-ashy.vercel.app/movies")
       .then((res) => res.json())
       .then((data) => {
         setMovies(data);
@@ -182,7 +182,7 @@ const AllMovies = () => {
                       onClick={() => {
                         if (window.confirm("Are you sure to delete?")) {
                           fetch(
-                            `https://moviemaster-pro-server.vercel.app/movies/${movie._id}`,
+                            `https://movie-master-server-ashy.vercel.app/movies/${movie._id}`,
                             {
                               method: "DELETE",
                             }
