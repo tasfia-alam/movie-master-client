@@ -12,8 +12,8 @@ const Footer = () => {
     <footer
       className={`${
         isDark
-          ? "bg-gray-950 text-gray-200 border-t border-gray-800"
-          : "bg-gray-100 text-gray-800 border-t border-gray-300"
+          ? "bg-orange-600 text-gray-200 border-t border-gray-800"
+          : "bg-orange-600 text-white border-t border-gray-300"
       } py-10 px-6 transition-all duration-500`}
     >
       <div className="max-w-6xl mx-auto text-center space-y-8">
@@ -23,7 +23,7 @@ const Footer = () => {
             isDark ? "text-orange-500" : "text-gray-700"
           } flex justify-center items-center gap-2`}
         >
-          📽️ <span className="text-orange-500">MovieMasterPro</span>
+          📽️ <span className="text-white">MovieMasterPro</span>
         </h2>
 
         {/* Quick Navigation Links */}
@@ -113,8 +113,8 @@ const Footer = () => {
         >
           © {new Date().getFullYear()}{" "}
           <span
-            className={`font-semibold ${
-              isDark ? "text-orange-500" : "text-gray-700"
+            className={`font-bold ${
+              isDark ? "text-white" : "text-white"
             }`}
           >
             MovieMasterPro

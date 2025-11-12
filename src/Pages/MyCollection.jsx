@@ -65,8 +65,8 @@ const MyCollection = () => {
   if (!user) {
     return (
       <div
-        className={`text-center mt-10 ${
-          theme === "dark" ? "text-gray-200" : "text-gray-900"
+        className={`text-center text-3xl font-bold mt-10 mb-6 ${
+          theme === "dark" ? "text-orange-600" : "text-orange-600"
         }`}
       >
         Please login to see your collection.
