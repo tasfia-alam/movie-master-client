@@ -10,7 +10,7 @@ const AddMovie = () => {
   const [genre, setGenre] = useState("");
   const [rating, setRating] = useState("");
   const [posterUrl, setPosterUrl] = useState("");
-  const [releaseYear, setReleaseYear] = useState(""); // ✅ Release Year added
+  const [releaseYear, setReleaseYear] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
