@@ -165,7 +165,7 @@ const AllMovies = () => {
                 <p>Rating: {movie.rating}</p>
 
                 <button
-                  className="mt-2 bg-blue-500 text-white py-1 rounded hover:bg-blue-600"
+                  className="mt-2 bg-orange-500 text-white py-1 rounded hover:bg-green-600"
                   onClick={() => navigate(`/movieDetails/${movie._id}`)}
                 >
                   Details
