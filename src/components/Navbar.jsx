@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext} from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { auth } from "../firebase/firebase.config";
 import { signOut } from "firebase/auth";
 import {
@@ -8,6 +8,10 @@ import {
   FaSearch,
   FaMoon,
   FaSun,
+  FaHome,
+  FaFilm,
+  FaPlusCircle,
+  FaLayerGroup,
 } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { Link, NavLink, useNavigate } from "react-router";
@@ -21,7 +25,6 @@ const Navbar = () => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
   const profileRef = useRef(null);
-
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   useEffect(() => {
@@ -57,7 +60,6 @@ const Navbar = () => {
     return () => clearTimeout(delay);
   }, [query]);
 
-
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -69,13 +71,12 @@ const Navbar = () => {
     }
   };
 
- 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (query.trim().length > 0) {
       navigate(`/movies?search=${encodeURIComponent(query.trim())}`);
       setMobileOpen(false);
-      setSearchResults([]); 
+      setSearchResults([]);
     } else {
       navigate("/movies");
       setMobileOpen(false);
@@ -84,109 +85,106 @@ const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 z-40 shadow-md ${
-        theme === "dark" ? "bg-gray-900" : "bg-white"
+      className={`sticky top-0 z-50 shadow-lg backdrop-blur-md transition-all duration-500 ${
+        theme === "dark"
+          ? "bg-gradient-to-r from-gray-900 via-black to-gray-800 text-white"
+          : "bg-gradient-to-r from-white via-gray-50 to-gray-100 text-gray-800"
       }`}
     >
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Left: Logo */}
-        <div className="flex items-center gap-4">
-          <Link to="/" className="flex items-center gap-2">
-            <h1
-              className={`text-xl md:text-2xl font-bold ${
-                theme === "dark" ? "text-white" : "text-gray-800"
-              }`}
-            >
-              <span >📽️ MovieMaster</span>
-              <span className="text-orange-500">Pro</span>
-            </h1>
-          </Link>
-        </div>
+        {/* Logo */}
+        <Link
+          to="/"
+          className="flex items-center gap-2 text-2xl font-extrabold tracking-wide"
+        >
+          <span className="text-orange-500">🎬</span>
+          <span>
+            Movie<span className="text-orange-500">Master</span>Pro
+          </span>
+        </Link>
 
-        {/* Middle: Desktop nav + search */}
-        <div className="hidden md:flex md:items-center md:gap-6 flex-1 ml-6">
-          <nav className="flex items-center gap-4">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
+        {/* Desktop Nav */}
+        <nav className="hidden lg:flex items-center gap-6 font-medium">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `flex items-center gap-1 transition-all ${
                 isActive
-                  ? "text-orange-600 font-medium"
-                  : theme === "dark"
-                  ? "text-gray-200 hover:text-red-400"
-                  : "text-gray-700 hover:text-red-500"
-              }
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/allmovies"
-              className={({ isActive }) =>
+                  ? "text-orange-500 border-b-2 border-orange-500"
+                  : "hover:text-orange-400"
+              }`
+            }
+          >
+            <FaHome /> Home
+          </NavLink>
+
+          <NavLink
+            to="/allmovies"
+            className={({ isActive }) =>
+              `flex items-center gap-1 transition-all ${
                 isActive
-                  ? "text-red-600 font-medium"
-                  : theme === "dark"
-                  ? "text-gray-200 hover:text-red-400"
-                  : "text-gray-700 hover:text-red-500"
-              }
-            >
-              All Movies
-            </NavLink>
-            <NavLink
-              to="/mycollection"
-              className={({ isActive }) =>
+                  ? "text-orange-500 border-b-2 border-orange-500"
+                  : "hover:text-orange-400"
+              }`
+            }
+          >
+            <FaFilm /> All Movies
+          </NavLink>
+
+          <NavLink
+            to="/mycollection"
+            className={({ isActive }) =>
+              `flex items-center gap-1 transition-all ${
                 isActive
-                  ? "text-red-600 font-medium"
-                  : theme === "dark"
-                  ? "text-gray-200 hover:text-red-400"
-                  : "text-gray-700 hover:text-red-500"
-              }
-            >
-              My Collection
-            </NavLink>
-            {user && (
-              <NavLink
-                to="/addmovie"
-                className={({ isActive }) =>
+                  ? "text-orange-500 border-b-2 border-orange-500"
+                  : "hover:text-orange-400"
+              }`
+            }
+          >
+            <FaLayerGroup /> My Collection
+          </NavLink>
+
+          {user && (
+            <NavLink
+              to="/addmovie"
+              className={({ isActive }) =>
+                `flex items-center gap-1 transition-all ${
                   isActive
-                    ? "text-red-600 font-medium"
-                    : theme === "dark"
-                    ? "text-gray-200 hover:text-red-400"
-                    : "text-gray-700 hover:text-red-500"
-                }
-              >
-                Add Movie
-              </NavLink>
-            )}
-          </nav>
+                    ? "text-orange-500 border-b-2 border-orange-500"
+                    : "hover:text-orange-400"
+                }`
+              }
+            >
+              <FaPlusCircle /> Add Movie
+            </NavLink>
+          )}
+        </nav>
 
-          {/* Search bar */}
+        {/* Right Side */}
+        <div className="flex items-center gap-3">
+          {/* Search */}
           <form
             onSubmit={handleSearchSubmit}
-            className={`ml-6 flex items-center rounded overflow-hidden relative ${
-              theme === "dark" ? "bg-gray-700" : "bg-gray-100"
-            }`}
+            className={`hidden lg:flex items-center rounded-full px-3 py-1 relative ${
+              theme === "dark"
+                ? "bg-gray-800 hover:bg-gray-700"
+                : "bg-gray-200 hover:bg-gray-300"
+            } transition-all`}
           >
+            <FaSearch className="text-gray-500" />
             <input
               type="text"
-              placeholder="Search movies..."
+              placeholder="Search..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className={`px-3 py-2 w-72 outline-none bg-transparent text-sm ${
+              className={`ml-2 bg-transparent outline-none text-sm ${
                 theme === "dark" ? "text-white" : "text-gray-800"
               }`}
             />
-            <button type="submit" className="px-3 py-2">
-              <FaSearch
-                className={theme === "dark" ? "text-white" : "text-gray-700"}
-              />
-            </button>
-
-            {/*  Dropdown search result */}
             {searchResults.length > 0 && (
               <ul
-                className={`absolute top-11 left-0 w-full max-h-64 overflow-y-auto rounded-lg shadow-lg z-50 ${
-                  theme === "dark"
-                    ? "bg-gray-800 text-white"
-                    : "bg-white text-gray-800"
+                className={`absolute top-10 right-0 w-60 rounded-lg shadow-xl overflow-hidden z-50 ${
+                  theme === "dark" ? "bg-gray-800" : "bg-white"
                 }`}
               >
                 {searchResults.map((movie) => (
@@ -197,7 +195,7 @@ const Navbar = () => {
                       setQuery("");
                       setSearchResults([]);
                     }}
-                    className="px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
+                    className="px-4 py-2 hover:bg-orange-100 dark:hover:bg-gray-700 cursor-pointer"
                   >
                     🎥 {movie.title}
                   </li>
@@ -205,250 +203,155 @@ const Navbar = () => {
               </ul>
             )}
           </form>
-        </div>
 
-        {/* Right: Auth/Profile + Theme toggle */}
-        <div className="flex items-center gap-3">
-          {/* Theme toggle */}
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className={`p-2 rounded ${
-              theme === "dark" ? "hover:bg-gray-800" : "hover:bg-gray-200"
-            }`}
+            className="p-2 rounded-full transition hover:scale-110 hover:shadow-md"
           >
             {theme === "dark" ? (
-              <FaSun className="text-yellow-400" />
+              <FaSun className="text-yellow-400 text-lg" />
             ) : (
-              <FaMoon className="text-gray-600" />
+              <FaMoon className="text-gray-700 text-lg" />
             )}
           </button>
 
-          {/* Auth/Profile */}
-          <div className="hidden md:flex items-center gap-3">
-            {user ? (
-              <div className="relative" ref={profileRef}>
-                <button
-                  onClick={() => setProfileOpen((p) => !p)}
-                  className={`flex items-center gap-2 px-3 py-1 rounded hover:${
-                    theme === "dark" ? "bg-gray-800" : "bg-gray-100"
+          {/* User */}
+          {user ? (
+            <div className="relative" ref={profileRef}>
+              <button
+                onClick={() => setProfileOpen((p) => !p)}
+                className="flex items-center gap-2 rounded-full hover:scale-105 transition"
+              >
+                {user.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt="avatar"
+                    className="w-9 h-9 rounded-full border border-orange-400 object-cover"
+                  />
+                ) : (
+                  <FaUserCircle
+                    className={`w-8 h-8 ${
+                      theme === "dark" ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  />
+                )}
+              </button>
+
+              {profileOpen && (
+                <div
+                  className={`absolute right-0 mt-3 w-48 rounded-xl shadow-lg overflow-hidden border ${
+                    theme === "dark"
+                      ? "bg-gray-800 text-gray-200 border-gray-700"
+                      : "bg-white text-gray-800 border-gray-200"
                   }`}
                 >
-                  {user.photoURL ? (
-                    <img
-                      src={user.photoURL}
-                      alt="avatar"
-                      className="w-8 h-8 rounded-full object-cover"
-                    />
-                  ) : (
-                    <FaUserCircle
-                      className={`w-8 h-8 ${
-                        theme === "dark" ? "text-gray-200" : "text-gray-600"
-                      }`}
-                    />
-                  )}
-                  <span
-                    className={`text-sm ${
-                      theme === "dark" ? "text-gray-200" : "text-gray-700"
-                    }`}
-                  >
-                    {user.displayName || user.email}
-                  </span>
-                </button>
-
-                {profileOpen && (
-                  <div
-                    className={`absolute right-0 mt-2 w-48 border rounded shadow-lg ${
-                      theme === "dark"
-                        ? "bg-gray-800 text-gray-200 border-gray-700"
-                        : "bg-white text-gray-900"
-                    }`}
-                  >
-                    <Link
-                      to="/profile"
-                      className="block px-4 py-2 text-sm hover:bg-gray-100"
-                    >
-                      Profile
-                    </Link>
-                    <Link
-                      to="/watchlist"
-                      className="block px-4 py-2 text-sm hover:bg-gray-100"
-                    >
-                      Watchlist
-                    </Link>
-                    <button
-                      onClick={handleLogout}
-                      className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <>
-                <Link
-                  to="/login"
-                  className="px-4 py-2 bg-orange-600 text-white rounded hover:bg-red-500 text-sm"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="px-4 py-2 border border-red-600 text-red-600 rounded hover:bg-red-50 text-sm"
-                >
-                  Register
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
-
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMobileOpen((s) => !s)}
-          className="md:hidden p-2 rounded hover:bg-gray-200"
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <FaTimes /> : <FaBars />}
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div
-          className={`md:hidden border-t ${
-            theme === "dark" ? "bg-gray-900 border-gray-700" : "bg-white"
-          }`}
-        >
-          <div className="px-4 py-3 space-y-3">
-            <form
-              onSubmit={handleSearchSubmit}
-              className="flex items-center gap-2"
-            >
-              <input
-                type="text"
-                placeholder="Search movies..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                className={`flex-1 px-3 py-2 border rounded ${
-                  theme === "dark"
-                    ? "bg-gray-700 text-gray-200 border-gray-600"
-                    : "bg-white text-gray-800"
-                }`}
-              />
-              <button
-                type="submit"
-                className="px-3 py-2 bg-orange-600 text-white rounded"
-              >
-                <FaSearch />
-              </button>
-            </form>
-
-            <NavLink
-              to="/"
-              onClick={() => setMobileOpen(false)}
-              className={`block ${
-                theme === "dark" ? "text-gray-200" : "text-gray-700"
-              }`}
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/allmovies"
-              onClick={() => setMobileOpen(false)}
-              className={`block ${
-                theme === "dark" ? "text-gray-200" : "text-gray-700"
-              }`}
-            >
-              All Movies
-            </NavLink>
-            <NavLink
-              to="/mycollection"
-              onClick={() => setMobileOpen(false)}
-              className={`block ${
-                theme === "dark" ? "text-gray-200" : "text-gray-700"
-              }`}
-            >
-              My Collection
-            </NavLink>
-            {user && (
-              <NavLink
-                to="/addmovie"
-                onClick={() => setMobileOpen(false)}
-                className={`block ${
-                  theme === "dark" ? "text-gray-200" : "text-gray-700"
-                }`}
-              >
-                Add Movie
-              </NavLink>
-            )}
-
-            {user ? (
-              <div className="border-t pt-2">
-                <div className="flex items-center gap-3">
-                  {user.photoURL ? (
-                    <img
-                      src={user.photoURL}
-                      alt="avatar"
-                      className="w-10 h-10 rounded-full object-cover"
-                    />
-                  ) : (
-                    <FaUserCircle
-                      className={`w-10 h-10 ${
-                        theme === "dark" ? "text-gray-200" : "text-gray-600"
-                      }`}
-                    />
-                  )}
-                  <div>
-                    <p className="text-sm font-medium">
-                      {user.displayName || user.email}
-                    </p>
-                    <p className="text-xs text-gray-500">Member</p>
-                  </div>
-                </div>
-                <div className="mt-3 space-y-2">
                   <Link
                     to="/profile"
-                    onClick={() => setMobileOpen(false)}
-                    className="block px-3 py-2 rounded hover:bg-black hover:text-black"
+                    className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-gray-700"
                   >
                     Profile
                   </Link>
                   <Link
                     to="/watchlist"
-                    onClick={() => setMobileOpen(false)}
-                    className="block px-3 py-2 rounded hover:bg-black hover:text-black"
+                    className="block px-4 py-2 hover:bg-orange-100 dark:hover:bg-gray-700"
                   >
                     Watchlist
                   </Link>
                   <button
-                    onClick={() => {
-                      setMobileOpen(false);
-                      handleLogout();
-                    }}
-                    className="w-full text-left px-3 py-2 rounded hover:bg-black hover:text-black"
+                    onClick={handleLogout}
+                    className="w-full text-left px-4 py-2 hover:bg-orange-100 dark:hover:bg-gray-700"
                   >
                     Logout
                   </button>
                 </div>
-              </div>
-            ) : (
+              )}
+            </div>
+          ) : (
+            <div className="hidden lg:flex gap-2">
+              <Link
+                to="/login"
+                className="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-sm transition"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="px-4 py-2 rounded-full border border-orange-500 text-orange-500 hover:bg-orange-50 text-sm transition"
+              >
+                Register
+              </Link>
+            </div>
+          )}
+
+          {/* Mobile & Tablet menu toggle */}
+          <button
+            onClick={() => setMobileOpen((s) => !s)}
+            className="block lg:hidden text-2xl focus:outline-none"
+          >
+            {mobileOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div
+          className={`lg:hidden border-t ${
+            theme === "dark"
+              ? "bg-gray-900/95 border-gray-700"
+              : "bg-white/90 border-gray-200"
+          }`}
+        >
+          <div className="px-4 py-4 space-y-3">
+            {[{ to: "/", label: "Home" },
+              { to: "/allmovies", label: "All Movies" },
+              { to: "/mycollection", label: "My Collection" }].map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                onClick={() => setMobileOpen(false)}
+                className="block py-2 font-medium hover:text-orange-500 transition"
+              >
+                {link.label}
+              </NavLink>
+            ))}
+            {user && (
+              <NavLink
+                to="/addmovie"
+                onClick={() => setMobileOpen(false)}
+                className="block py-2 font-medium hover:text-orange-500 transition"
+              >
+                Add Movie
+              </NavLink>
+            )}
+            {!user ? (
               <div className="pt-2 space-y-2">
                 <Link
                   to="/login"
                   onClick={() => setMobileOpen(false)}
-                  className="block px-3 py-2 bg-red-600 text-white rounded text-center"
+                  className="block px-3 py-2 bg-orange-500 text-white rounded text-center"
                 >
                   Login
                 </Link>
                 <Link
                   to="/register"
                   onClick={() => setMobileOpen(false)}
-                  className="block px-3 py-2 border border-red-600 text-red-600 rounded text-center"
+                  className="block px-3 py-2 border border-orange-500 text-orange-500 rounded text-center"
                 >
                   Register
                 </Link>
               </div>
+            ) : (
+              <button
+                onClick={() => {
+                  setMobileOpen(false);
+                  handleLogout();
+                }}
+                className="w-full text-left px-3 py-2 rounded hover:bg-orange-100 dark:hover:bg-gray-800 transition"
+              >
+                Logout
+              </button>
             )}
           </div>
         </div>
@@ -458,4 +361,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
