@@ -56,7 +56,11 @@ const Home = () => {
           theme === "dark" ? "bg-orange-500" : "bg-white"
         }`}
       >
-        <h2 className="text-4xl font-extrabold text-center mb-6 text-orange-600">Statistics</h2>
+        {/* <h2 className="text-4xl font-extrabold text-center mb-6 text-orange-600">Statistics</h2> */}
+        <h2 className={`statistics text-4xl font-extrabold text-center mb-6 ${
+          theme === "dark" ? "text-white" : "text-orange-500"
+        }`}>Statistics</h2>
+
         <div className="flex justify-center gap-10 flex-wrap">
           <div className="bg-black text-white shadow-lg p-6 rounded-lg w-44 text-center hover:scale-105 transition-transform">
             Total Movies: {movies.length}
@@ -69,10 +73,25 @@ const Home = () => {
 
       {/* Top Rated Movies */}
       <section className="top-rated py-12">
-        <h2 className="text-4xl font-extrabold text-center mb-6">
-          <span className="text-orange-600">Top</span> Rated{" "}
-          <span className="text-orange-600">Movies</span>
+        <div
+         className={
+        theme === "dark"
+          ? " text-white"
+          : " text-gray-900"
+      }
+        
+        >
+          <h2 className="text-4xl font-extrabold text-center mb-6 pb-6">
+          Top Rated Movies ✨
         </h2>
+
+
+
+          {/* <h2 className="text-4xl font-extrabold text-center mb-6">
+          <span className="text-orange-600">Top Rated </span>
+          <span className="text-orange-600">Movies</span>
+        </h2> */}
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 px-5">
           {topRatedMovies.map((movie) => (
             <div
@@ -180,23 +199,93 @@ const Home = () => {
       </section>
 
       {/* About Platform */}
-      <section
-        className={`about-platform py-12 ${
-          theme === "dark" ? "bg-gray-800" : "bg-gray-100"
+{/* About Platform */}
+<section
+  className={`about-platform py-16 px-6 ${
+    theme === "dark"
+      ? "bg-gradient-to-b from-gray-900 to-gray-800 text-white"
+      : "bg-gradient-to-b from-gray-100 to-white text-gray-800"
+  } transition-all duration-500`}
+>
+  <div className="max-w-5xl mx-auto text-center space-y-6">
+    {/* Title */}
+    <h2
+      className={`text-4xl sm:text-5xl font-extrabold tracking-tight ${
+        theme === "dark" ? "text-orange-500" : "text-gray-700"
+      }`}
+    >
+      About{" "}
+      <span
+        className={`${
+          theme === "dark" ? "text-white" : "text-orange-600"
         }`}
       >
-        <h2 className="text-4xl font-extrabold text-center mb-4">
-          About <span className="text-orange-600">MovieMaster</span> Pro
-        </h2>
-        <p
-          className={theme === "dark" ? "text-gray-200" : "text-gray-700"}
-          style={{ maxWidth: "768px", margin: "0 auto", textAlign: "center" }}
-        >
-          MovieMaster Pro is a comprehensive movie management system where users
-          can browse, manage, and organize their favorite movies with advanced
-          filtering and personal collections.
-        </p>
-      </section>
+        MovieMaster
+      </span>{" "}
+      Pro
+    </h2>
+
+    {/* Decorative Line */}
+    <div
+      className={`w-20 h-[3px] mx-auto rounded-full ${
+        theme === "dark" ? "bg-orange-500" : "bg-gray-400"
+      }`}
+    ></div>
+
+    {/* Description */}
+    <p
+      className={`leading-relaxed text-lg ${
+        theme === "dark" ? "text-gray-300" : "text-gray-600"
+      }`}
+      style={{ maxWidth: "760px", margin: "0 auto" }}
+    >
+      MovieMaster Pro is a comprehensive movie management system where users
+      can browse, manage, and organize their favorite movies with advanced
+      filtering and personal collections.
+    </p>
+
+    {/* Small Feature Highlights */}
+    <div className="flex flex-wrap justify-center gap-6 mt-8">
+      <div
+        className={`px-6 py-4 rounded-2xl shadow-md ${
+          theme === "dark"
+            ? "bg-gray-800 hover:bg-gray-700 text-gray-200"
+            : "bg-white hover:bg-gray-50 text-gray-700"
+        } transition-all duration-300`}
+      >
+        🎬 <span className="font-semibold">Browse Movies</span>
+      </div>
+      <div
+        className={`px-6 py-4 rounded-2xl shadow-md ${
+          theme === "dark"
+            ? "bg-gray-800 hover:bg-gray-700 text-gray-200"
+            : "bg-white hover:bg-gray-50 text-gray-700"
+        } transition-all duration-300`}
+      >
+        ❤️ <span className="font-semibold">Save Favorites</span>
+      </div>
+      <div
+        className={`px-6 py-4 rounded-2xl shadow-md ${
+          theme === "dark"
+            ? "bg-gray-800 hover:bg-gray-700 text-gray-200"
+            : "bg-white hover:bg-gray-50 text-gray-700"
+        } transition-all duration-300`}
+      >
+        🧩 <span className="font-semibold">Smart Filters</span>
+      </div>
+      <div
+        className={`px-6 py-4 rounded-2xl shadow-md ${
+          theme === "dark"
+            ? "bg-gray-800 hover:bg-gray-700 text-gray-200"
+            : "bg-white hover:bg-gray-50 text-gray-700"
+        } transition-all duration-300`}
+      >
+        📁 <span className="font-semibold">Personal Collections</span>
+      </div>
+    </div>
+  </div>
+</section>
+
     </div>
   );
 };

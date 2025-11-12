@@ -1,74 +1,125 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
-import { Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+import { Facebook, Instagram, Youtube, Home, PlusCircle, Info, Film } from "lucide-react";
 import { Link } from "react-router";
 
 const Footer = () => {
   const { theme } = useContext(ThemeContext);
 
+  const isDark = theme === "dark";
+
   return (
     <footer
       className={`${
-        theme === "dark"
-          ? "bg-gray-900 text-gray-300 border-t border-gray-700"
+        isDark
+          ? "bg-gray-950 text-gray-200 border-t border-gray-800"
           : "bg-gray-100 text-gray-800 border-t border-gray-300"
-      } mt-10 py-8 px-4`}
+      } py-10 px-6 transition-all duration-500`}
     >
-      <div className="max-w-6xl mx-auto text-center space-y-6">
+      <div className="max-w-6xl mx-auto text-center space-y-8">
         {/* Website Name */}
-        <h2 className="text-2xl font-bold text-indigo-500">
-          🎬 <span className="text-orange-600">Movie</span>Master{" "}
-          <span className="text-orange-600">Pro</span>
+        <h2
+          className={`text-3xl font-extrabold tracking-wide ${
+            isDark ? "text-orange-500" : "text-gray-700"
+          } flex justify-center items-center gap-2`}
+        >
+          📽️ <span className="text-orange-500">MovieMasterPro</span>
         </h2>
 
-        {/* Navigation Links */}
-        <div className="flex justify-center gap-6 text-sm font-medium">
-          <Link to="/" className="hover:text-indigo-500 transition">
-            Home
+        {/* Quick Navigation Links */}
+        <div className="flex flex-wrap justify-center gap-8 text-sm font-medium mt-6">
+          <Link
+            to="/"
+            className={`flex items-center gap-2 hover:scale-110 transition ${
+              isDark ? "hover:text-orange-400" : "hover:text-gray-600"
+            }`}
+          >
+            <Home size={18} /> Home
           </Link>
+
           <Link
             to="/my-collection"
-            className="hover:text-indigo-500 transition"
+            className={`flex items-center gap-2 hover:scale-110 transition ${
+              isDark ? "hover:text-orange-400" : "hover:text-gray-600"
+            }`}
           >
-            My Collection
+            <Film size={18} /> My Collection
           </Link>
-          <Link to="/add-movie" className="hover:text-indigo-500 transition">
-            Add Movie
+
+          <Link
+            to="/add-movie"
+            className={`flex items-center gap-2 hover:scale-110 transition ${
+              isDark ? "hover:text-orange-400" : "hover:text-gray-600"
+            }`}
+          >
+            <PlusCircle size={18} /> Add Movie
           </Link>
-          <Link to="/about" className="hover:text-indigo-500 transition">
-            About
+
+          <Link
+            to="/about"
+            className={`flex items-center gap-2 hover:scale-110 transition ${
+              isDark ? "hover:text-orange-400" : "hover:text-gray-600"
+            }`}
+          >
+            <Info size={18} /> About
           </Link>
         </div>
 
-        {/* Social Links */}
-        <div className="flex justify-center gap-5">
+        {/* Divider Line */}
+        <div
+          className={`w-28 h-[2px] mx-auto rounded-full ${
+            isDark ? "bg-orange-500" : "bg-gray-400"
+          }`}
+        ></div>
+
+        {/* Social Media Links */}
+        <div className="flex justify-center gap-8 mt-6">
           <a
             href="https://facebook.com"
             target="_blank"
-            className="hover:text-indigo-500 transition"
+            className={`flex items-center gap-2 hover:scale-110 transition ${
+              isDark ? "hover:text-orange-400" : "hover:text-gray-600"
+            }`}
           >
-            <Facebook size={22} />
+            <Facebook size={20} /> <span className="hidden sm:inline">Facebook</span>
           </a>
-          {/* <img src={twit} sizes={22} alt="" /> */}
+
           <a
             href="https://instagram.com"
             target="_blank"
-            className="hover:text-indigo-500 transition"
+            className={`flex items-center gap-2 hover:scale-110 transition ${
+              isDark ? "hover:text-orange-400" : "hover:text-gray-600"
+            }`}
           >
-            <Instagram size={22} />
+            <Instagram size={20} /> <span className="hidden sm:inline">Instagram</span>
           </a>
+
           <a
             href="https://youtube.com"
             target="_blank"
-            className="hover:text-indigo-500 transition"
+            className={`flex items-center gap-2 hover:scale-110 transition ${
+              isDark ? "hover:text-orange-400" : "hover:text-gray-600"
+            }`}
           >
-            <Youtube size={22} />
+            <Youtube size={20} /> <span className="hidden sm:inline">YouTube</span>
           </a>
         </div>
 
         {/* Copyright */}
-        <p className="text-sm opacity-75">
-          © {new Date().getFullYear()} MovieMaster Pro. All rights reserved.
+        <p
+          className={`text-sm mt-6 ${
+            isDark ? "text-gray-400" : "text-gray-500"
+          }`}
+        >
+          © {new Date().getFullYear()}{" "}
+          <span
+            className={`font-semibold ${
+              isDark ? "text-orange-500" : "text-gray-700"
+            }`}
+          >
+            MovieMasterPro
+          </span>{" "}
+          | All rights reserved.
         </p>
       </div>
     </footer>
