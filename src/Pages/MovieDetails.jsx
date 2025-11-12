@@ -36,7 +36,6 @@ const MovieDetails = () => {
       </div>
     );
 
-  // Add to My Collection
   const handleAddToCollection = () => {
     if (!user) {
       toast.error("Please login first!");
